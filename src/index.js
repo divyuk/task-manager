@@ -18,6 +18,8 @@ app.get("/tasks/:id", (req, res) => {
   res.status(200).send(singleTask);
 });
 
+app.post("/tasks", (req, res) => {});
+
 app.listen(PORT, (error) => {
   if (error) console.log("Something went wrong...");
   else console.log("Server started on the port 3000");
