@@ -2,14 +2,18 @@ class Validator {
   static validation(task) {
     if (
       task.hasOwnProperty("title") &&
-      task.hasOwnProperty("desciption") &&
-      task.title !== "" && // Check if title is not empty after trimming
-      task.description !== "" && // Check if description is not empty after trimming
+      task.hasOwnProperty("description") &&
+      task.title != "" && // Check if title is not empty after trimming
+      task.description != "" && // Check if description is not empty after trimming
       task.hasOwnProperty("flag") &&
       task.hasOwnProperty("priority")
-    )
-      return { status: true, message: "Task has been created" };
-    else return { status: false, message: "Validation failed" };
+    ) {
+      console.log("This", task.description);
+      return { status: true, message: "Task has b een created" };
+    } else {
+      console.log("Wrong", task);
+      return { status: false, message: "Validation failed" };
+    }
   }
 }
 

@@ -63,7 +63,7 @@ app.post("/tasks", (req, res) => {
   const currentTime = new Date().toISOString();
   userPostedTask.timestamp = currentTime;
   userPostedTask.id = uuidv4();
-  if (validator.validation(userPostedTask)) {
+  if (validator.validation(userPostedTask).status) {
     taskDB.push(userPostedTask);
     const jsonData = JSON.stringify(taskDB);
     const writePath = path.join(__dirname, "tasks.json");
