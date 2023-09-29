@@ -4,6 +4,7 @@ const validator = require("./helpers/validator");
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 const PORT = 3000;
@@ -14,10 +15,6 @@ app.use(cors()); // Use cors middleware to enable cross-origin requests
 app.get("/", (req, res) => {
   res.status(200).send("This is the homepage...");
 });
-
-// app.get("/tasks", (req, res) => {
-//   res.status(200).send(taskDB);
-// });
 
 app.get("/tasks", (req, res) => {
   try {
@@ -65,6 +62,7 @@ app.post("/tasks", (req, res) => {
   const userPostedTask = req.body;
   const currentTime = new Date().toISOString();
   userPostedTask.timestamp = currentTime;
+  userPostedTask.id = uuidv4();
   if (validator.validation(userPostedTask)) {
     taskDB.push(userPostedTask);
     const jsonData = JSON.stringify(taskDB);
