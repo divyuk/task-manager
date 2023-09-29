@@ -13,8 +13,37 @@ app.get("/", (req, res) => {
   res.status(200).send("This is the homepage...");
 });
 
+// app.get("/tasks", (req, res) => {
+//   res.status(200).send(taskDB);
+// });
+
 app.get("/tasks", (req, res) => {
-  res.status(200).send(taskDB);
+  try {
+    let filteredTasks = [...taskDB];
+
+    // Filter tasks based on completion status
+    if (req.query.flag) {
+      filteredTasks = filteredTasks.filter(
+        (task) => task.flag === req.query.flag
+      );
+    }
+
+    // Sort tasks by creation date (timestamp)
+    if (req.query.sort === "asc") {
+      filteredTasks.sort(
+        (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+      );
+    } else if (req.query.sort === "desc") {
+      filteredTasks.sort(
+        (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+      );
+    }
+
+    res.status(200).json(filteredTasks);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 app.get("/tasks/:id", (req, res) => {
@@ -23,8 +52,17 @@ app.get("/tasks/:id", (req, res) => {
   res.status(200).send(singleTask);
 });
 
+app.get("/tasks/priority/:level", (req, res) => {
+  const level = req.params.level;
+  let filterTasks = [...taskDB];
+  filterTasks = filterTasks.filter((task) => task.priority == level);
+  res.status(200).send(filterTasks);
+});
+
 app.post("/tasks", (req, res) => {
   const userPostedTask = req.body;
+  const currentTime = new Date().toISOString();
+  userPostedTask.timestamp = currentTime;
   if (validator.validation(userPostedTask)) {
     taskDB.push(userPostedTask);
     const jsonData = JSON.stringify(taskDB);
