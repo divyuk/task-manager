@@ -69,7 +69,7 @@ app.post("/tasks", (req, res) => {
     const writePath = path.join(__dirname, "tasks.json");
     fs.writeFile(writePath, jsonData, (err) => {
       if (err) res.status(500).send("Something went wrong!!");
-      else res.status(201).send(validator.validation(userPostedTask).message);
+      else res.status(201).send(validator.validation(userPostedTask).data);
     });
   } else res.status(400).send(validator.validation(userPostedTask).message);
 });

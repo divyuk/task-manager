@@ -9,7 +9,7 @@ class Validator {
       task.hasOwnProperty("priority")
     ) {
       console.log("This", task.description);
-      return { status: true, message: "Task has b een created" };
+      return { status: true, message: "Task has been created", data: task };
     } else {
       console.log("Wrong", task);
       return { status: false, message: "Validation failed" };
