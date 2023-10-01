@@ -2,8 +2,5 @@
   "version": 2,
   "name": "task-manager",
   "builds": [{ "src": "./src/index.js", "use": "@vercel/node" }],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "./src/index.js" },
-    { "src": "/(.*)", "dest": "./src/index.js" }
-  ]
+  "routes": [{ "src": "/(.*)", "dest": "./src/index.js" }]
 }
