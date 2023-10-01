@@ -1,6 +1,6 @@
 # task-manager
 
-API will allow users to perform CRUD operations (Create, Read, Update, and Delete) on tasks.
+This API will allow users to perform CRUD operations (Create, Read, Update, and Delete) on tasks.
 
 ## How to use?
 
