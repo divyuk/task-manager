@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "version": 2,
+  "name": "task-manager",
+  "builds": [{ "src": "./src/index.js", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "./src/index.js" }]
 }
