@@ -1,5 +1,5 @@
 const express = require("express");
-const taskDB = require("./src/tasks.json");
+const taskDB = require("./src/./src/tasks.json");
 const validator = require("./src/helpers/validator");
 const fs = require("fs");
 const path = require("path");
@@ -66,7 +66,7 @@ app.post("/tasks", (req, res) => {
   if (validator.validation(userPostedTask).status) {
     taskDB.push(userPostedTask);
     const jsonData = JSON.stringify(taskDB);
-    const writePath = path.join(__dirname, "tasks.json");
+    const writePath = path.join(__dirname, "./src/tasks.json");
     fs.writeFile(writePath, jsonData, (err) => {
       if (err) res.status(500).send("Something went wrong!!");
       else res.status(201).send(validator.validation(userPostedTask).data);
@@ -82,7 +82,7 @@ app.put("/tasks/:id", (req, res) => {
     else return task;
   });
   const jsonData = JSON.stringify(updatedTask);
-  const writePath = path.join(__dirname, "tasks.json");
+  const writePath = path.join(__dirname, "./src/tasks.json");
   fs.writeFile(writePath, jsonData, (err) => {
     if (err) res.status(500).send("Something went wrong!!");
     else res.status(201).send("Task Updated");
@@ -93,7 +93,7 @@ app.delete("/tasks/:id", (req, res) => {
   const ID = req.params.id;
   const filtredTask = taskDB.filter((task) => task.id != ID);
   const jsonData = JSON.stringify(filtredTask);
-  const writePath = path.join(__dirname, "tasks.json");
+  const writePath = path.join(__dirname, "./src/tasks.json");
   fs.writeFile(writePath, jsonData, (err) => {
     if (err) res.status(500).send("Something went wrong!!");
     else res.status(204).send("Task Updated");
