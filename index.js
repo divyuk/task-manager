@@ -17,7 +17,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-
+express.urlencoded({ extended: false });
 app.get("/", (req, res) => {
   res.status(200).send("This is the homepage...");
 });
