@@ -1,5 +1,5 @@
 const express = require("express");
-const taskDB = require("./src/./src/tasks.json");
+const taskDB = require("./src/tasks.json");
 const validator = require("./src/helpers/validator");
 const fs = require("fs");
 const path = require("path");
