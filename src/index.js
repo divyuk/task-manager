@@ -12,7 +12,7 @@ const PORT = 3000;
 app.use(express.json());
 app.use(cors()); // Use cors middleware to enable cross-origin requests
 
-app.get("task-manager-pillcrhwg-divyuk.vercel.app/", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).send("This is the homepage...");
 });
 
