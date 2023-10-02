@@ -93,7 +93,7 @@ app.post("/tasks", (req, res) => {
     const jsonData = JSON.stringify(taskDB);
     const writePath = path.join(__dirname, "./src/tasks.json");
     fs.writeFile(writePath, jsonData, (err) => {
-      if (err) res.status(500).send("Something went wrong!!");
+      if (err) res.status(500).send("Something went wrong!!", writePath);
       else res.status(201).send(validator.validation(userPostedTask).data);
     });
   } else res.status(400).send(validator.validation(userPostedTask).message);
