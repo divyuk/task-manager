@@ -13,6 +13,7 @@ app.use(express.json());
 
 const corsOptions = {
   origin: "http://localhost:5173",
+  methods: ["GET", "POST"],
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
